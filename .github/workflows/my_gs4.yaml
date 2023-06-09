@@ -1,10 +1,6 @@
 name: mygs4
 
- 
-
 on:
-
- 
 
   push:
     branches:
@@ -12,10 +8,6 @@ on:
     paths:
     - data    
 
- 
-
 jobs:
 
- 
-
-  build:
+build:
