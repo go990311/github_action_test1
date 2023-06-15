@@ -8,6 +8,7 @@ event_reg <- read_sheet("https://docs.google.com/spreadsheets/d/1Iqxq3Eb5xh_BIiL
 event_reg %>%
   write_rds("data/event_reg.rds")
 
-git2r::commit(repo = ".", message = "commit message")
-
-git2r::push("origin", "refs/head/main")
+# git2r::add()
+# git2r::commit(repo = ".", message = "commit message")
+# 
+# git2r::push("origin", "refs/head/main")
