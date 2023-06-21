@@ -68,5 +68,3 @@ p <- ggplot(data = event_reg, aes(x = `Dietary restrictions`, fill = `Dietary re
 ggplotly(p)
 
 ```
-
-
