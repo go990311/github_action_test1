@@ -1,33 +1,22 @@
----
-title: "Covid Vaccine Distribution.rmd"
-author: "Godfrey"
-date: "Sys.Data()"
-output: html_document
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
 
-# R PACKAGES
-```{r, echo=FALSE}
 library(tidyverse)
 library(plotly)
 library(RSocrata)
-```
+
 
 # READ DATA
-```{r, echo=FALSE}
+
 # covid_df <- read.csv("https://data.cdc.gov/resource/5jp2-pgaw.csv")
 
 covid_df <- read.socrata("https://data.cdc.gov/resource/5jp2-pgaw.csv")
 
 # Data fetch timestamp
 covid_df$dtstamp = Sys.time()
-```
+
 
 # DATA CLEANING
-```{r, echo=FALSE}
+
 covid_df %>%
   select(
     -c(1:3, 6, 10:22, 25, 26, 29:33)
@@ -51,19 +40,18 @@ covid.df2 <- covid.df1 %>%
 
 # Convert state column to uppercase for consistency
 covid.df2$State <- toupper(covid.df2$State)
-```
+
 
 # DATA EXPLORATION
 ## What are the states and territories in US with the highest number of vaccination providers?
-```{r, echo=FALSE}
+
 # Explore the distribution of providers by states and territories
 state_counts_all <- covid.df2 %>%
   group_by(State) %>%
   summarise(provider_count = n())
-```
 
 # VISUALIZATION
-```{r, echo=FALSE}
+
 # Plotting the distribution of vaccine providers by state and territories
 plot <- ggplot(state_counts_all, aes(x = State, y = provider_count)) +
   geom_bar(stat = "identity", fill = "steelblue") +
@@ -77,5 +65,7 @@ plotly_plot <- ggplotly(plot)
 
 # Display the interactive plot
 plotly_plot
-```
+
+ggsave("myplot.png", plot = plot)
+
 
